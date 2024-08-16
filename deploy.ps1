@@ -23,6 +23,7 @@ git rm package.json
 git rm vite.config.ts
 git rm README.md
 git rm index.html
+git rm tsconfig*.json
 
 # git clean -fxd
 
