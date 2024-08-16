@@ -3,9 +3,6 @@
 # Build the project
 npm run build
 
-# Navigate to the project directory
-cd /path/to/your/project
-
 # Ensure you are on the main branch
 git checkout main
 
