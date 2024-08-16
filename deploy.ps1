@@ -10,14 +10,24 @@ cd /path/to/your/project
 git checkout main
 
 # Create and switch to the gh-pages branch
-git checkout -b gh-pages
+git checkout gh-pages
 
 # Remove all files except the build directory
-git rm -rf .
-git clean -fxd
+git rm public/*
+git rm src/*
+git rm .gitignore
+git rm deploy.ps1
+git rm *.js
+git rm *.json
+git rm *.ts
+git rm *.md
+git rm *.html
+
+
+# git clean -fxd
 
 # Move the build files to the root directory
-mv build/* .
+mv dist/* .
 
 # Add and commit the build files
 git add .
