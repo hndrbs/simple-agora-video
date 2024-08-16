@@ -17,18 +17,18 @@ git rm README.md
 git rm index.html
 git rm tsconfig*.json
 
-# git clean -fxd
+# # git clean -fxd
 
-# Move the build files to the root directory
+# # Move the build files to the root directory
 mv dist/* .
 
-# Add and commit the build files
+# # Add and commit the build files
 git add .
 git commit -m "Deploy static files to gh-pages"
 
-# Push the gh-pages branch to the remote repository
+# # Push the gh-pages branch to the remote repository
 git push origin gh-pages --force
 git branch -D gh-pages
-# Switch back to the main branch
+# # Switch back to the main branch
 git checkout main
 npm i
