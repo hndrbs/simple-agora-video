@@ -6,34 +6,40 @@ const defaultStates = {
   token: '',
   channel: '',
   showVideo: false,
+  uid: 0,
+  appId: "1510f54378f344449c5ac30a62c11f7f",
 }
 
 function App() {
   const [states, setStates] = useState(defaultStates);
   const callbacks = {
-    EndCall: () => setStates(defaultStates),
+    EndCall: () => setStates({...states, showVideo: false}),
   };
 
-  const rtcProps = {
-      appId: "1510f54378f344449c5ac30a62c11f7f",
-      ...states
-  };
-
-  const videoCall = states.showVideo && states.channel && states.token;
+  const videoCall = states.showVideo 
+    && states.uid
+    && states.channel 
+    && states.token;
 
   return videoCall ? (
     <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
-      <AgoraUIKit rtcProps={rtcProps} callbacks={callbacks} />
+      <AgoraUIKit rtcProps={states} callbacks={callbacks} />
     </div>
   ) : (
-    <div style={{ display: 'flex', gap: '5px'}}>
+    <div className='flex-container'>
+      <label>uid</label>
+      <input onChange={(e) => setStates({ ...states, uid: +e.target.value })} 
+        type='text' placeholder='uid'
+        value={states.uid}
+      />
+      <label>channel</label>
       <input onChange={(e) => setStates({ ...states, channel: e.target.value })} 
         type='text' placeholder='channel name'
-        style={{ height: "100px", width: "500px" }}
+        value={states.channel}
       />
+      <label>token</label>
       <input onChange={(e) => setStates({ ...states, token: e.target.value })}
-        type='text' placeholder='token' 
-        style={{ height: "100px", width: "500px" }}
+        type='text' placeholder='token' value={states.token}
       />
       <button onClick={() => setStates({ ...states, showVideo: true })}>Start Video</button>
     </div>
